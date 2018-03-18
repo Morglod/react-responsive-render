@@ -17,7 +17,7 @@ import { Responsive } from 'react-responsive-render';
 ```
 
 Handle window resize:
-```
+```js
 <Responsive>
     {({ width, height }) => (
         <div>
@@ -37,7 +37,7 @@ Handle element resize:
 ```
 
 Use callback instead of render function:
-```
+```js
 <Responsive toElement onChange={callback}>
     <Smth />
 </Responsive>
