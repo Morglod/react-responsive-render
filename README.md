@@ -14,7 +14,10 @@ npm i react-responsive-render
 
 ```js
 import { Responsive } from 'react-responsive-render';
+```
 
+Handle window resize:
+```
 <Responsive>
     {({ width, height }) => (
         <div>
@@ -22,13 +25,19 @@ import { Responsive } from 'react-responsive-render';
         </div>
     )}
 </Responsive>
+```
 
+Handle element resize:
+```js
 <Responsive toElement resizeTimeout={500}>
     {({ width, height }) => (
         <textarea value={`Textarea: ${width} x ${height}`} readOnly />
     )}
 </Responsive>
+```
 
+Use callback instead of render function:
+```
 <Responsive toElement onChange={callback}>
     <Smth />
 </Responsive>
