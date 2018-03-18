@@ -8,7 +8,7 @@ npm i react-responsive-render
 
 * TypeScript support
 
-## Example
+## Usage
 
 [Live demo](https://codepen.io/morglod/project/editor/XovwVo)
 
