@@ -10,7 +10,7 @@ npm i react-responsive-render
 
 ## Usage
 
-[Live demo](https://codepen.io/morglod/project/editor/XovwVo)
+<a href="https://codepen.io/morglod/project/editor/XovwVo" target="_blank">Live demo</a>
 
 ```js
 import { Responsive } from 'react-responsive-render';
