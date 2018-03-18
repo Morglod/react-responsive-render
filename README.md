@@ -13,7 +13,7 @@ npm i react-responsive-render
 [Live demo](https://codepen.io/morglod/project/editor/XovwVo)
 
 ```js
-import { Responsive } from './react-responsive-render';
+import { Responsive } from 'react-responsive-render';
 
 <Responsive>
     {({ width, height }) => (
