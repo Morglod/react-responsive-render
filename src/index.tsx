@@ -4,12 +4,13 @@ import * as ReactDOM from 'react-dom';
 const RESIZE_DEFAULT_TIMEOUT_MS = 63;
 
 export type ResponsiveRenderer =
-    ({ width, height }: { width: number, height: number }) => React.ReactElement<any>;
+    (state: { width: number, height: number }) => React.ReactElement<any>;
 
 export type ResponsiveProps = {
-    children: ResponsiveRenderer,
+    children: ResponsiveRenderer | React.ReactElement<any> | React.ReactElement<any>[],
     toElement?: boolean,
     resizeTimeout?: number,
+    onChange?: (state: { width: number, height: number }) => any,
 }
 
 export type ResponsiveState = {
@@ -17,7 +18,17 @@ export type ResponsiveState = {
     height: number,
 }
 
-export class Responsive extends React.Component<ResponsiveProps, ResponsiveState> {
+/**
+ * ```js
+ * <Responsive>{
+ *   ({ width, height }) =>
+ *     <div>
+ *       Window: {width} x {height}
+ *     </div>
+ * }</Responsive>
+ *  ```
+ */
+export class Responsive extends React.PureComponent<ResponsiveProps, ResponsiveState> {
     static defaultProps = {
         resizeTimeout: RESIZE_DEFAULT_TIMEOUT_MS,
     }
@@ -30,8 +41,24 @@ export class Responsive extends React.Component<ResponsiveProps, ResponsiveState
     timeout: any = null;
     animationFrameRequest: any = null;
 
+    componentWillReceiveProps(nextProps: ResponsiveProps) {
+        if (this.props.toElement !== nextProps.toElement || this.props.resizeTimeout !== nextProps.resizeTimeout) {
+            this.shutdown();
+            this.setup(nextProps);
+            this.forceUpdate();
+        }
+    }
+
     componentWillMount() {
-        const { toElement } = this.props;
+        this.setup();
+    }
+
+    componentWillUnmount() {
+        this.shutdown();
+    }
+
+    setup = (props: ResponsiveProps = this.props) => {
+        const { toElement } = props;
         const toWindow = !toElement;
 
         if (toWindow) {
@@ -41,13 +68,13 @@ export class Responsive extends React.Component<ResponsiveProps, ResponsiveState
         } else {
             this.timeout = setInterval(this.elementResizeTimeout, this.props.resizeTimeout);
         }
-    }
+    };
 
-    componentWillUnmount() {
+    shutdown = () => {
         window.removeEventListener('resize', this.handleWindowResize);
         if (this.props.toElement) clearInterval(this.timeout);
         else clearTimeout(this.timeout);
-    }
+    };
 
     elementResizeTimeout = () => {
         if (this.animationFrameRequest) cancelAnimationFrame(this.animationFrameRequest);
@@ -80,11 +107,16 @@ export class Responsive extends React.Component<ResponsiveProps, ResponsiveState
     };
 
     handleResize = (state: { width: number, height: number }) => {
-        this.setState(state);
+        this.setState(state, this.afterResize);
+    };
+
+    afterResize = () => {
+        if (this.props.onChange)
+            this.props.onChange(this.state);
     };
 
     render() {
         const { children, toElement } = this.props;
-        return children ? children(this.state) : null;
+        return typeof children === 'function' ? children(this.state) : children;
     }
 }
