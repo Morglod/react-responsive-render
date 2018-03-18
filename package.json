@@ -2,7 +2,7 @@
   "name": "react-responsive-render",
   "version": "0.0.1",
   "description": "Update component on window or element resize",
-  "typings": "lib/index.d.ts",
+  "types": "lib/index.d.ts",
   "main": "lib/index.js",
   "scripts": {
     "build": "tsc"
