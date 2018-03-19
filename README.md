@@ -1,3 +1,4 @@
+[![npm package](https://img.shields.io/npm/v/react-responsive-render.svg?style=flat-square)](https://www.npmjs.org/package/react-responsive-render)
 # react-responsive-render
 
 React on window or element resize.
