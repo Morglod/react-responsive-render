@@ -44,9 +44,40 @@ Use callback instead of render function:
 </Responsive>
 ```
 
-## props
+Handle overflow:
+```js
+<ResponsiveItems
+    items={buttons}
+    minItemWidth={80}
+>
+    {({ children, restItems }) => (
+        <ButtonGroup>
+            {children}
+            {restItems.length ?
+                <DropDownButton
+                    label="..."
+                    children={restItems}
+                /> : null}
+        </ButtonGroup>
+    )}
+</ResponsiveItems>
+```
+
+## `Responsive` props
 
 * `toElement` - Observe element's size (`false` by default).
 * `resizeTimeout` - Timeout before update (`63` by default).
 * `children` - Node or render function.
 * `onChange({ width, height })` - Callback for any changes.
+
+## `ResponsiveItems` props
+
+* `resizeTimeout` - Timeout before update (`63` by default).
+* `items` - Array of items.
+* `children` - Render function `children({ children, restItems })`.
+* `minItemWidth` - Min required width per item (in pixels).
+
+Handle vertical overflow:
+
+* `rows=true` - Flag.
+* `minItemHeight` - Min required height per item (in pixels).
