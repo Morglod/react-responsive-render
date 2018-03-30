@@ -9,6 +9,12 @@ npm i react-responsive-render
 
 * TypeScript support
 
+Components:
+
+* Responsive
+* [ResponsiveItems](https://youtu.be/GqFE9N1pJFc)
+* [SpaceAround](https://www.youtube.com/watch?v=vchfJJxB-9o)
+
 ## Usage
 
 <a href="https://codepen.io/morglod/project/editor/XovwVo" target="_blank">Live demo</a>
@@ -76,10 +82,6 @@ Handle space around (eg for dropdown or tooltip):
     <button children="MyButton" />
 </SpaceAround>
 ```
-<details>
-    <summary>SpaceAround demo</summary>
-    <iframe width="560" height="315" src="https://www.youtube.com/embed/vchfJJxB-9o?rel=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-</details>
 
 ## `Responsive` props
 
