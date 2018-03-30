@@ -111,3 +111,8 @@ Handle vertical overflow:
 * Bottom
 * LeftTop
 * LeftBottom
+
+## TODO
+
+* Storybook [Waiting for bugfix in release](https://github.com/storybooks/storybook/issues/3083)
+* Documentation
