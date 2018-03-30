@@ -63,6 +63,20 @@ Handle overflow:
 </ResponsiveItems>
 ```
 
+Handle space around (eg for dropdown or tooltip):
+```js
+<SpaceAround
+    calcStyle
+    item={(status, style) => (
+        <span className="tooltip" style={style}>
+            This is tooltip for MyButton! {status}
+        </span>
+    )}
+>
+    <button children="MyButton" />
+</SpaceAround>
+```
+
 ## `Responsive` props
 
 * `toElement` - Observe element's size (`false` by default).
@@ -83,3 +97,17 @@ Handle vertical overflow:
 
 * `rows=true` - Flag.
 * `minItemHeight` - Min required height per item (in pixels).
+
+## `SpaceAround` props
+
+* `container` - Wrapper (`span` by default).
+* `children` - Any children. Will be used as base element.
+* `timeout` - Timeout in ms before update (`500` by default).
+* `calcStyle` - Calculate styles for `props.item`.
+* `item(status: SpaceAroundStatus, style?)` - Movable element renderer.
+
+`SpaceAroundStatus` is one of:
+* Top
+* Bottom
+* LeftTop
+* LeftBottom
