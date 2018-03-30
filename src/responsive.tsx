@@ -15,6 +15,8 @@ export type ResponsiveProps = {
      * element's position relative to screen
      */
     trackPosition?: boolean,
+    /** true by default; if false, use getComputedStyle to get pixel perfect element's size */
+    fast?: boolean,
     onChange?: (state: { width: number, height: number, left?: number, top?: number }) => any,
 }
 
@@ -38,6 +40,7 @@ export type ResponsiveState = {
 export class Responsive extends React.PureComponent<ResponsiveProps, ResponsiveState> {
     static defaultProps = {
         resizeTimeout: RESIZE_DEFAULT_TIMEOUT_MS,
+        fast: true,
     }
 
     state = {
@@ -96,22 +99,37 @@ export class Responsive extends React.PureComponent<ResponsiveProps, ResponsiveS
 
     frameRequest = () => {
         const node = ReactDOM.findDOMNode(this);
-        const styles = window.getComputedStyle(node);
-        const width = parseFloat(styles.width || '0');
-        const height = parseFloat(styles.height || '0');
+        let width: number, height: number, left: number, top: number;
+    
+        if (this.props.fast) {
+            const rect = node.getBoundingClientRect();
+            width = rect.width;
+            height = rect.height;
+            left = rect.left;
+            top = rect.top;
+        } else {
+            const styles = window.getComputedStyle(node);
+            width = parseFloat(styles.width || '0');
+            height = parseFloat(styles.height || '0');
+        }
 
         if (this.props.trackPosition) {
-            const { left, top } = node.getBoundingClientRect();
+            if (!this.props.fast) {
+                const rect = node.getBoundingClientRect();
+                left = rect.left;
+                top = rect.top;
+            }
+
             if (width !== this.state.width ||
                 height !== this.state.height ||
-                left !== this.state.left ||
-                top !== this.state.top
+                left! !== this.state.left ||
+                top! !== this.state.top
             ) {
                 this.handleResize({
                     width,
                     height,
-                    left,
-                    top
+                    left: left!,
+                    top: top!
                 });
             }
         } else {

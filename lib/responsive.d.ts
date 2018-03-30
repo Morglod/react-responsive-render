@@ -13,6 +13,8 @@ export declare type ResponsiveProps = {
      * element's position relative to screen
      */
     trackPosition?: boolean;
+    /** true by default; if false, use getComputedStyle to get pixel perfect element's size */
+    fast?: boolean;
     onChange?: (state: {
         width: number;
         height: number;
@@ -39,6 +41,7 @@ export declare type ResponsiveState = {
 export declare class Responsive extends React.PureComponent<ResponsiveProps, ResponsiveState> {
     static defaultProps: {
         resizeTimeout: number;
+        fast: boolean;
     };
     state: {
         width: number;

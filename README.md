@@ -70,6 +70,7 @@ Handle overflow:
 * `children` - Node or render function.
 * `onChange({ width, height, left?, top? })` - Callback for any changes. `left`, `top` is position from `props.trackPosition` option.
 * `trackPosition` - Track position (scroll for window mode / screen position for toElement mode).
+* `fast` - `true` by default. If `false`, use `getComputedStyle` to get element's size.
 
 ## `ResponsiveItems` props
 
