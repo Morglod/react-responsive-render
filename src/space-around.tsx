@@ -13,7 +13,8 @@ export type SpaceAroundProps = {
     container?: any,
     children?: any,
     timeout?: number,
-    calcStyle?: boolean
+    calcStyle?: boolean,
+    immediate?: boolean
 }
 
 export type SpaceAroundState = {
@@ -121,6 +122,7 @@ export class SpaceAround extends React.PureComponent<SpaceAroundProps, SpaceArou
                     toElement
                     resizeTimeout={timeout}
                     onChange={this.handleChildren}
+                    immediate={this.props.immediate}
                 >
                     {children}
                 </Responsive>
@@ -129,6 +131,7 @@ export class SpaceAround extends React.PureComponent<SpaceAroundProps, SpaceArou
                     toElement
                     resizeTimeout={timeout}
                     onChange={this.handleItem}
+                    immediate={this.props.immediate}
                 >
                     {item ? item(status, style, hiddenStatus) : <span/>}
                 </Responsive>

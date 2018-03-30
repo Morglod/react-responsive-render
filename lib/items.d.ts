@@ -10,6 +10,7 @@ export declare type ResponsiveItemsProps<Item> = {
     rows?: boolean;
     minItemWidth?: number;
     minItemHeight?: number;
+    immediate?: boolean;
 };
 export declare class ResponsiveItems<Item = any> extends React.PureComponent<ResponsiveItemsProps<Item>> {
     render(): JSX.Element;

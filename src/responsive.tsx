@@ -18,6 +18,9 @@ export type ResponsiveProps = {
     /** true by default; if false, use getComputedStyle to get pixel perfect element's size */
     fast?: boolean,
     onChange?: (state: { width: number, height: number, left?: number, top?: number }) => any,
+
+    /** Update immediate after didMount event */
+    immediate?: boolean
 }
 
 export type ResponsiveState = {
@@ -67,6 +70,13 @@ export class Responsive extends React.PureComponent<ResponsiveProps, ResponsiveS
 
     componentWillUnmount() {
         this.shutdown();
+    }
+
+    componentDidMount() {
+        if (this.props.immediate) {
+            if (this.props.toElement) this.frameRequest();
+            else this.handleWindowResizeTimeout();
+        }
     }
 
     setup = (props: ResponsiveProps = this.props) => {

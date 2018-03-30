@@ -12,6 +12,7 @@ export declare type SpaceAroundProps = {
     children?: any;
     timeout?: number;
     calcStyle?: boolean;
+    immediate?: boolean;
 };
 export declare type SpaceAroundState = {
     windowWidth: number;

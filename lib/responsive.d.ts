@@ -21,6 +21,8 @@ export declare type ResponsiveProps = {
         left?: number;
         top?: number;
     }) => any;
+    /** Update immediate after didMount event */
+    immediate?: boolean;
 };
 export declare type ResponsiveState = {
     width: number;
@@ -54,6 +56,7 @@ export declare class Responsive extends React.PureComponent<ResponsiveProps, Res
     componentWillReceiveProps(nextProps: ResponsiveProps): void;
     componentWillMount(): void;
     componentWillUnmount(): void;
+    componentDidMount(): void;
     setup: (props?: ResponsiveProps) => void;
     shutdown: () => void;
     elementResizeTimeout: () => void;

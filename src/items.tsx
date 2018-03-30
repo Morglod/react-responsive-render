@@ -8,7 +8,8 @@ export type ResponsiveItemsProps<Item> = {
     children: (props: { children: Item[], restItems: Item[] }) => any,
     rows?: boolean,
     minItemWidth?: number,
-    minItemHeight?: number
+    minItemHeight?: number,
+    immediate?: boolean
 }
 
 export class ResponsiveItems<Item = any> extends React.PureComponent<ResponsiveItemsProps<Item>> {
@@ -19,13 +20,15 @@ export class ResponsiveItems<Item = any> extends React.PureComponent<ResponsiveI
             resizeTimeout,
             rows,
             minItemWidth,
-            minItemHeight
+            minItemHeight,
+            immediate
         } = this.props;
 
         return (
             <Responsive
                 toElement
                 resizeTimeout={resizeTimeout}
+                immediate={immediate}
                 children={({ width, height }) => {
                     const itemsNum = (rows === true) ?
                         Math.floor(height / minItemHeight!) : Math.floor(width / minItemWidth!);

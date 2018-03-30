@@ -85,6 +85,7 @@ Handle space around (eg for dropdown or tooltip):
 * `onChange({ width, height, left?, top? })` - Callback for any changes. `left`, `top` is position from `props.trackPosition` option.
 * `trackPosition` - Track position (scroll for window mode / screen position for toElement mode).
 * `fast` - `true` by default. If `false`, use `getComputedStyle` to get element's size.
+* `immediate` - `false` by default. Update sizes and invoke `onChange` immediate after didMount.
 
 ## `ResponsiveItems` props
 
@@ -92,6 +93,7 @@ Handle space around (eg for dropdown or tooltip):
 * `items` - Array of items.
 * `children` - Render function `children({ children, restItems })`.
 * `minItemWidth` - Min required width per item (in pixels).
+* `immediate` - `false` by default. Update sizes and invoke `onChange` immediate after didMount.
 
 Handle vertical overflow:
 
@@ -105,6 +107,7 @@ Handle vertical overflow:
 * `timeout` - Timeout in ms before update (`500` by default).
 * `calcStyle` - Calculate styles for `props.item`.
 * `item(status: SpaceAroundStatus, style?)` - Movable element renderer.
+* `immediate` - `false` by default. Update sizes and invoke `onChange` immediate after didMount.
 
 `SpaceAroundStatus` is one of:
 * Top
