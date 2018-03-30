@@ -28,11 +28,11 @@ Handle window resize:
 </Responsive>
 ```
 
-Handle element resize:
+Handle element size & position:
 ```js
-<Responsive toElement resizeTimeout={500}>
-    {({ width, height }) => (
-        <textarea value={`Textarea: ${width} x ${height}`} readOnly />
+<Responsive toElement resizeTimeout={500} trackPosition>
+    {({ width, height, left, top }) => (
+        <textarea value={`Textarea: ${width} x ${height} Screen: [ ${left}, ${top} ]`} readOnly />
     )}
 </Responsive>
 ```
@@ -68,7 +68,8 @@ Handle overflow:
 * `toElement` - Observe element's size (`false` by default).
 * `resizeTimeout` - Timeout before update (`63` by default).
 * `children` - Node or render function.
-* `onChange({ width, height })` - Callback for any changes.
+* `onChange({ width, height, left?, top? })` - Callback for any changes. `left`, `top` is position from `props.trackPosition` option.
+* `trackPosition` - Track position (scroll for window mode / screen position for toElement mode).
 
 ## `ResponsiveItems` props
 

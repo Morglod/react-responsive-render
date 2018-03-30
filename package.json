@@ -1,6 +1,6 @@
 {
   "name": "react-responsive-render",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Update component on window or element resize",
   "types": "lib/index.d.ts",
   "main": "lib/index.js",
