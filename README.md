@@ -12,8 +12,8 @@ npm i react-responsive-render
 Components:
 
 * Responsive
-* [ResponsiveItems](https://youtu.be/GqFE9N1pJFc)
-* [SpaceAround](https://www.youtube.com/watch?v=vchfJJxB-9o)
+* ResponsiveItems [video](https://youtu.be/GqFE9N1pJFc)
+* SpaceAround [video](https://www.youtube.com/watch?v=vchfJJxB-9o)
 
 ## Usage
 
